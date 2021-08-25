@@ -12,7 +12,6 @@ export function Home() {
     const history = useHistory();
 
     function signIn() {
-
     }
 
     function handleCreateRoom() {
@@ -20,8 +19,6 @@ export function Home() {
         auth.signInWithPopup(provider).then(result => {
             console.log(result);
         })
-
-
         history.push('/rooms/new');
     }
 
