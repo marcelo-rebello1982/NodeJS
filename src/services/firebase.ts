@@ -10,14 +10,16 @@ const firebaseConfig = {
     projectId: process.env.REACT_APP_PROJECTC_ID,
     storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_APP_ID,
-  };
-  
-  firebase.initializeApp(firebaseConfig);
-  
-  const auth = firebase.auth();
-  const databaSE = firebase.database();
+    appId: process.env.REACT_APP_APP_ID
+};
 
-  export { firebase, auth, databaSE };
+firebase.initializeApp(firebaseConfig);
 
-  
+const auth = firebase.auth();
+const databaSE = firebase.database();
+
+export {
+    firebase,
+    auth,
+    databaSE
+};
