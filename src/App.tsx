@@ -1,34 +1,65 @@
-import { createContext, useState } from 'react'
+import { createContext, useState , useEffect } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { Home } from './pages/Home';
 import { NewRoom } from './pages/NewRoom';
-import { auth , firebase} from './services/firebase';
+import { auth, firebase } from './services/firebase';
 
-export const AuthContext = createContext({} as any);
+type User = {
+  id: string;
+  name: string;
+  avatar: string;
+}
+
+type AuthContextType = {
+  user: User | undefined;
+  signInwithGoogle: () => Promise<void>;
+}
+
+export const AuthContext = createContext({} as AuthContextType);
 
 function App() {
-  const [user, setUser] = useState();
 
-  function signInwithGoogle() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider).then(result => {
-      if (result.user) {
-        const { displayName, photoURL, uid } = result.user;
-        if (!displayName || !photoURL ) {
+  const [user, setUser] = useState<User>();
+
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        const { displayName, photoURL, uid } = user
+
+        if (!displayName || !photoURL) {
           throw new Error('Missing information from Goolgle acound.')
         }
-        setUser({ 
+
+        setUser({
           id: uid,
           name: displayName,
           avatar: photoURL
-        })
-      }
+        })}
     })
+  }, [])
+
+  async function signInwithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    const result = await auth.signInWithPopup(provider);
+
+    if (result.user) {
+      const { displayName, photoURL, uid } = result.user;
+
+      if (!displayName || !photoURL) {
+        throw new Error('Missing information from Goolgle acound.')
+      }
+      setUser({
+        id: uid,
+        name: displayName,
+        avatar: photoURL
+      })
+    }
   }
 
   return (
     <BrowserRouter>
-      <AuthContext.Provider value={{user, signInwithGoogle }}>
+      <AuthContext.Provider value={{ user, signInwithGoogle }}>
         <Route path="/" exact component={Home} />
         <Route path="/rooms/new" component={NewRoom} />
       </AuthContext.Provider>

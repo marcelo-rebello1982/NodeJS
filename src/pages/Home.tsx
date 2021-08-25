@@ -1,18 +1,23 @@
+import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { auth, firebase } from '../services/firebase'
+import { AuthContext } from '../App';
 import illustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg';
 import googleIconImg from '../assets/images/google-icon.svg'
+
 import { Button } from '../components/Button';
+
 import '../styles/auth.scss';
-
-
 
 export function Home() {
 
     const history = useHistory();
+    const { user, signInwithGoogle } = useContext(AuthContext)
 
-    function handleCreateRoom() {
+    async function handleCreateRoom() {
+        if (!user) {
+          await signInwithGoogle()
+        }
         history.push('/rooms/new');
     }
 
@@ -24,7 +29,6 @@ export function Home() {
                 <p>Tire as duvidas em tempo real * alterar stilo</p>
             </aside>
             <main>
-            
                 <div className="main-content">
                     <img src={logoImg} alt="letmeask" />
                     <button onClick={handleCreateRoom} className="create-room">
