@@ -6,6 +6,8 @@ import { AuthContextProvider } from './contexts/AuthContext';
 
 function App() {
 
+   // entender melhor este conceitos do react : context, state, properties
+
   return (
     <BrowserRouter>
     <AuthContextProvider>
