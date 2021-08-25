@@ -1,7 +1,8 @@
-import '../styles/auth.scss'
+import { Link } from 'react-router-dom'
+import illustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg';
 import { Button } from '../components/Button';
-import illustrationImg from '../assets/images/illustration.svg'
+
 
 export function NewRoom() {
     return (
@@ -16,14 +17,14 @@ export function NewRoom() {
                         <img src={logoImg} alt="letmeask" />
                         <h2>Criar uma nova sala</h2>
                         <form>
-                            <input type="text" placeholder= "digite o nome da sala"
+                            <input type="text" placeholder= "Nome da sala"
                             />
                             <Button type ="submit">
                                Criar Sala
                             </Button>
                         </form>
                         <p>
-                          quer entrar em uma sala exitente ? <a href="#">clique aqui</a>
+                          quer entrar em uma sala exitente ? <Link to="/">clique aqui</Link>
                         </p>
                         </div>
                 </main>
