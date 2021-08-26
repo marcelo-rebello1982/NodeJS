@@ -1,9 +1,18 @@
+import {useParams } from 'react-router-dom';
 import logoImg from '../assets/images/logo.svg';
 import { Button } from '../components/Button';
+import { RoomCode } from '../components/RoomCode';
 import '../styles/room.scss'
 
 
+type RoomParams = {
+    id : string;
+}
+
+
 export function Room() {
+
+    const params = useParams<RoomParams>();
 
     
     return (
@@ -11,7 +20,7 @@ export function Room() {
             <header>
                 <div className="content">
                     <img src={logoImg} alt="LetMeask" />
-                    <div>codigo</div>
+                  <RoomCode code={params.id}/>
                 </div>
             </header>
 

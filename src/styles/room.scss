@@ -9,6 +9,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             >img {
                 max-height: 45px;
             }
@@ -41,7 +42,7 @@
             }
         }
 
-        form{
+        form {
             textarea {
                 width: 100%;
                 border: 0;
@@ -52,7 +53,7 @@
                 resize: vertical;
                 min-height: 130px;
             }
-            
+
             .form-footer {
                 display: flex;
                 justify-content: space-between;
