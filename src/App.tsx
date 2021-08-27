@@ -5,6 +5,8 @@ import { AdminRoom } from './pages/adminRoom/AdminRoom';
 import { AuthContextProvider } from './contexts/AuthContext';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+//  procurar sobre react modal 1:03:06
+
 function App() {
   return (
     <BrowserRouter>
