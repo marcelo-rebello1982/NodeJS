@@ -4,8 +4,6 @@ import logoImg from '../../assets/images/logo.svg';
 import deleteImg from '../../assets/images/delete.svg';
 import { Question } from '../../components/Question';
 import { RoomCode } from '../../components/RoomCode';
-// import { FormEvent, useEffect, useState } from 'react';
-// import { useAuth } from '../../components/hooks/useAuth';
 import { useRoom } from '../../components/hooks/useRoom';
 import { database } from '../../services/firebase';
 
