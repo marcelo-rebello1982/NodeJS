@@ -1,8 +1,11 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { Home } from './pages/Home';
-import { NewRoom } from './pages/NewRoom';
+import { Room } from './components/Room';
+import { Home } from './pages/home/Home';
+import { NewRoom } from './pages/newRoom/NewRoom';
+import { AdminRoom } from './pages/adminRoom/AdminRoom';
 import { AuthContextProvider } from './contexts/AuthContext';
-import { Room } from './pages/Room';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+//  procurar sobre react modal 1:03:06
 
 function App() {
   return (
@@ -12,6 +15,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/rooms/new" component={NewRoom} />
           <Route path="/rooms/:id" component={Room} />
+          <Route path="/admin/rooms/:id" component={AdminRoom} />
         </Switch>
       </AuthContextProvider>
     </BrowserRouter>

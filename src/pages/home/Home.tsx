@@ -1,12 +1,13 @@
-import { useHistory } from 'react-router-dom';
-import illustrationImg from '../assets/images/illustration.svg';
-import logoImg from '../assets/images/logo.svg';
-import googleIconImg from '../assets/images/google-icon.svg';
-import { Button } from '../components/Button';
-import '../styles/auth.scss';
-import { useAuth } from '../hooks/useAuth';
 import { FormEvent, useState } from 'react';
-import { database } from '../services/firebase';
+import { useHistory } from 'react-router-dom';
+import logoImg from '../../assets/images/logo.svg';
+import { Button } from '../../components/Button';
+import { database } from '../../services/firebase';
+import { useAuth } from '../../components/hooks/useAuth';
+import googleIconImg from '../../assets/images/google-icon.svg';
+import illustrationImg from '../../assets/images/illustration.svg';
+
+import '../../styles/auth.scss';
 
 export function Home() {
   const history = useHistory();
@@ -16,7 +17,7 @@ export function Home() {
   async function handleCreateRoom() {
     if (!user) {
       await signInwithGoogle();
-      // await só e executado com resposta de sucess
+      // Await only and run with success response
     }
     history.push('/rooms/new');
   }
@@ -46,7 +47,7 @@ export function Home() {
         <div className="main-content">
           <img src={logoImg} alt="letmeask" />
           <button onClick={handleCreateRoom} className="create-room">
-            <img src={googleIconImg} alt="Logo do google" />
+            <img src={googleIconImg} alt="Google Logo" />
             Create your room with Google
           </button>
           <div className="separator">or enter one room</div>
