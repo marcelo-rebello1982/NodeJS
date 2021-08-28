@@ -41,7 +41,10 @@ export function Home() {
       <aside>
         <img src={illustrationImg} alt="Symbolizing questions and answers" />
         <strong>Create rooms Q&amp;A at real-time</strong>
-        <p>Take the doubts in real time</p>
+        <p>
+          Take the doubts in real time - By Marcelo email :
+          mp.rebello.martins@gmail.com
+        </p>
       </aside>
       <main>
         <div className="main-content">

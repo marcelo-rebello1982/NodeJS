@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Button } from '../../components/Button';
 import logoImg from '../../assets/images/logo.svg';
 import deleteImg from '../../assets/images/delete.svg';
@@ -16,8 +16,18 @@ type RoomParams = {
 export function AdminRoom() {
   // const { user } = useAuth();
 
+  const history = useHistory();
+
   const params = useParams<RoomParams>();
   const roomId = params.id;
+
+  async function handleEndRoom() {
+    await database.ref(`rooms/${roomId}`).update({
+      endedAt: new Date(),
+    });
+
+    history.push('/');
+  }
 
   async function handleDeleteQuestion(questionId: string) {
     if (window.confirm('Confirm the exclusion of this question?')) {
@@ -34,7 +44,9 @@ export function AdminRoom() {
           <img src={logoImg} alt="LetMeask" />
           <div>
             <RoomCode code={roomId} />
-            <Button isOutlined>Close room</Button>
+            <Button isOutlined onClick={handleEndRoom}>
+              Close room
+            </Button>
           </div>
         </div>
       </header>
